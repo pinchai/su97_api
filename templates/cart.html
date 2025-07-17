@@ -1,0 +1,60 @@
+{% extends "master.html" %}
+{% block main_content %}
+    <div class="container mt-4">
+        <h2 class="mb-4">Your Cart</h2>
+        <div class="card mb-3">
+            <div
+                    class="row no-gutters align-items-center"
+                    v-for="(item, index) in cart_list"
+            >
+                <div class="col-md-3 text-center p-2">
+                    <img
+                            :src="item.image"
+                            :alt="item.image"
+                            class="img-fluid" style="max-height: 150px;"
+                    >
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <h5 class="card-title">[[ item.title ]]</h5>
+                        <p class="card-text mb-1"><small class="text-muted">Category: [[ item.category ]]</small></p>
+                        <p class="card-text mb-1 product-description">[[ item.description ]]</p>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">$109.95</h5>
+                        <div class="input-group mb-2" style="max-width:120px; margin:auto;">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button">-</button>
+                            </div>
+                            <input type="text" class="form-control text-center" value="1">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button">+</button>
+                            </div>
+                        </div>
+                        <button @click="removeCartItem(index)" class="btn btn-danger btn-sm">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart summary -->
+        <div class="row justify-content-end">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Order Summary</h5>
+                        <div class="d-flex justify-content-between">
+                            <span>Subtotal</span>
+                            <span>$109.95</span>
+                        </div>
+                        <hr>
+                        <button class="btn btn-success btn-block">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
