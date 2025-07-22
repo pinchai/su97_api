@@ -23,14 +23,22 @@
                 </div>
                 <div class="col-md-3 text-center">
                     <div class="card-body">
-                        <h5 class="card-title text-primary">$109.95</h5>
+                        <h5 class="card-title text-primary">$ [[ item.price ]]</h5>
                         <div class="input-group mb-2" style="max-width:120px; margin:auto;">
                             <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary" type="button">-</button>
+                                <button
+                                        class="btn btn-outline-secondary"
+                                        type="button"
+                                        @click="removeItemQty(index)"
+                                >-</button>
                             </div>
-                            <input type="text" class="form-control text-center" value="1">
+                            <input type="text" class="form-control text-center" v-model="item.qty">
                             <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" type="button">+</button>
+                                <button
+                                        class="btn btn-outline-secondary"
+                                        type="button"
+                                        @click="addItemQty(index)"
+                                >+</button>
                             </div>
                         </div>
                         <button @click="removeCartItem(index)" class="btn btn-danger btn-sm">Remove</button>
@@ -44,10 +52,10 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5>Order Summary</h5>
+                        <h4>Order Summary</h4>
                         <div class="d-flex justify-content-between">
-                            <span>Subtotal</span>
-                            <span>$109.95</span>
+                            <h5>Total: </h5>
+                            <h5 style="color: red; background-color: yellow">$ [[ totalPrice() ]]</h5>
                         </div>
                         <hr>
                         <button class="btn btn-success btn-block">Proceed to Checkout</button>

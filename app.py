@@ -4,13 +4,6 @@ import requests
 app = Flask(__name__)
 
 
-# @app.get('/')
-# @app.get('/home')
-# def home():
-#     return render_template('master.html')
-#
-#
-
 @app.get('/')
 @app.get('/home')
 def home():
@@ -41,6 +34,11 @@ def detail(pro_id):
 @app.get('/cart')
 def cart():
     return render_template('cart.html')
+
+
+@app.get('/checkout')
+def checkout():
+    return render_template('checkout.html')
 
 
 @app.get('/support')

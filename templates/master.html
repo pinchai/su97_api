@@ -56,6 +56,13 @@
         },
         methods: {
             addToCart(item) {
+                let dpl = this.cart_list.find(cartItem => cartItem.id === item.id)
+                if (dpl) {
+                    dpl.qty += 1
+                    localStorage.setItem('cart', JSON.stringify(this.cart_list))
+                    return
+                }
+                item.qty = 1
                 this.cart_list.push(item)
                 localStorage.setItem('cart', JSON.stringify(this.cart_list))
             },
@@ -75,6 +82,21 @@
                     }
                 });
             },
+            addItemQty(index) {
+                this.cart_list[index].qty += 1
+                localStorage.setItem('cart', JSON.stringify(this.cart_list))
+            },
+            removeItemQty(index) {
+                if (this.cart_list[index].qty > 1) {
+                    this.cart_list[index].qty -= 1
+                }
+                localStorage.setItem('cart', JSON.stringify(this.cart_list))
+            },
+            totalPrice() {
+                return this.cart_list.reduce((total, item) => {
+                    return total + (item.price * item.qty)
+                }, 0).toFixed(2)
+            }
         }
     }).mount('#app')
 </script>
