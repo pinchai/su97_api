@@ -27,7 +27,7 @@ def home():
 def detail(pro_id):
     connection = sqlite3.connect('su79_database.sqlite3')
     cursor = connection.cursor()
-    result = cursor.execute('SELECT * FROM product Where id = 1').fetchone()
+    result = cursor.execute('SELECT * FROM product Where id = ?', [int(pro_id)]).fetchone()
     product = {
         'id': result[0],
         'title': result[1],
