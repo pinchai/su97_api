@@ -13,6 +13,7 @@ app.config['MAIL_PASSWORD'] = 'fpkjrhkbhagffsue'  # Use App Password from Google
 app.config['MAIL_DEFAULT_SENDER'] = 'e16153937@gmail.com'
 mail = Mail(app)
 
+
 #Global variable
 app.config['IMAGE_DIR'] = '/static/product/'
 
