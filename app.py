@@ -1,8 +1,21 @@
 from flask import Flask, render_template
 from flask_mail import Mail, Message
 import requests
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128))
+    profile = db.Column(db.String(128))
+
 
 # Configuration for Gmail SMTP
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -13,8 +26,7 @@ app.config['MAIL_PASSWORD'] = 'fpkjrhkbhagffsue'  # Use App Password from Google
 app.config['MAIL_DEFAULT_SENDER'] = 'e16153937@gmail.com'
 mail = Mail(app)
 
-
-#Global variable
+# Global variable
 app.config['IMAGE_DIR'] = '/static/product/'
 
 
@@ -29,6 +41,7 @@ def send_mail():
         return 'Mail sent!'
     except Exception as e:
         return f'An error occurred: {str(e)}'
+
 
 import route
 
