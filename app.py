@@ -1,8 +1,9 @@
 from flask import Flask, render_template
 from flask_mail import Mail, Message
-import requests
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from sqlalchemy import text
+import requests
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -44,6 +45,10 @@ def send_mail():
 
 
 import route
+
+
+
+
 
 if __name__ == '__main__':
     app.run()
